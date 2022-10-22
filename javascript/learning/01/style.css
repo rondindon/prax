@@ -1,0 +1,17 @@
+#countlabel {
+    display: block;
+    text-align: center;
+    font-size: 50vw;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    min-width: 50vw;
+    min-height: 5rem;
+    background-color: #232323;
+    color: whitesmoke;
+    box-shadow: 2px 2px 2px black;
+    border-radius: 5px;
+}

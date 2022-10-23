@@ -6,7 +6,7 @@
 
 button {
     display: block;
-    margin: 0 auto;
+    margin-right: auto;
     text-align: center;
     min-width: 50vw;
     min-height: 5rem;
@@ -14,4 +14,11 @@ button {
     color: whitesmoke;
     box-shadow: 2px 2px 2px black;
     border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover,
+button:focus {
+    background-color: rebeccapurple;
 }

@@ -263,7 +263,7 @@ let text = `Hello ${username} <br> You have ${items} items<br> Your total is ${t
 
 document.getElementById("mylabel").innerHTML = text;
 
-*/
+=======================GUESS THE NUMBER=====================
 
 const answer = Math.floor(Math.random() * 10 + 1);
 let guesses = 0;
@@ -280,3 +280,123 @@ document.getElementById("submitbtn").onclick = function() {
         alert(`too big`)
     }
 }
+
+=======================CELSIUS TO FAHRENHEIT CALCULATOR=============
+
+document.getElementById("submit").onclick = function() {
+    let temp;
+
+    if (document.getElementById("celcius").checked) {
+        temp = document.getElementById("textBox").value;
+        temp = Number(temp);
+        temp = toCelcius(temp);
+        document.getElementById("templabel").innerHTML = temp + "C";
+    }else if (document.getElementById("fahrenheit").checked){
+        temp = document.getElementById("textBox").value;
+        temp = Number(temp);
+        temp = toFahrenheit(temp);
+        document.getElementById("templabel").innerHTML = temp + "F";
+    }else {
+        document.getElementById("templabel").innerHTML = "select a unit";
+    }
+}
+
+function toCelcius(temp){
+    return (temp - 32) * (5/9);
+}
+
+function toFahrenheit(temp){
+    return temp * 9 / 5 + 32;
+}
+
+====================ARRAYS==================================
+
+let fruit = ["apple","orange","banana"];
+
+// fruit[3] = "coconut" 
+
+fruit.push("lemon");
+fruit.pop(); // ODSTARNI POSELDNY ELEMENT
+fruit.unshift("mango"); // PRIDA ELEMENT NA ZACIATOK
+fruit.shift(); // ODSTRANI PRVY ELEMENT
+
+let length = fruit.length;
+let index = fruit.indexOf("banana")
+
+console.log(index);
+
+===================LOOP THROUGH AN ARRAY=======================
+
+let prices = [5,10,15,20,25];
+
+for(let i = prices.length - 1; i >= 0 ; i--){
+    console.log(prices[i])
+}
+
+for (let price of prices){
+    console.log(price);
+}
+
+============================SORT AN ARRAY ========================
+
+let fruit = ["banana","apple","orange","mango"];
+
+ // fruit = fruit.sort();
+    fruit = fruit.sort().reverse();
+
+for (let fruit1 of fruit){
+    console.log(fruit1);
+}
+
+======================2D ARRAY AN ARRAY OF ARRAYS===================
+
+let fruit = ["apples","oranges","bananas"];
+let vegetables = ["carrots","onions","potatoes"];
+let meat = ["eggs","chicken","fish"];
+
+let grocery_list = [fruit,vegetables,meat];
+
+grocery_list[1][1] = "mangos";
+
+for(let list of grocery_list){
+    for(food of list){
+        console.log(food)
+    }
+}
+
+==========================SPRED OPERATOR ... ===========================
+
+let username = ["hovno","z","makom"];
+let numbers = [1,2,3,4,5,6,7,8,9];
+
+let maximum = Math.max(...numbers);
+
+console.log(...numbers , ...username);
+console.log(maximum);
+
+let class1 = ["spongebob","mcqueen","sandy"];
+let class2 = ["patrick","hovno","amak"];
+
+class1.push(...class2);
+
+console.log(...class1);
+
+==========================REST PARAMETERS===========================
+
+let a = 1;
+let b = 2;
+let c = 3;
+let d = 4;
+let e = 5;
+
+function sum(...numbers){
+    let total = 0;
+    for(let number of numbers){
+        total += number
+    }
+    return total
+}
+
+console.log(sum(a,b,b,b,b,c,e,e,e));
+
+*/

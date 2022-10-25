@@ -399,4 +399,183 @@ function sum(...numbers){
 
 console.log(sum(a,b,b,b,b,c,e,e,e));
 
+=============================CALL BACK========================
+
+sum(2,3,displayDOM);
+
+function sum(x,y,callback){
+    let result = x +y;
+    callback(result);
+}
+
+function displayConsole(output){
+    console.log(output);
+}
+
+function displayDOM(output){
+    document.getElementById("mylabel").innerHTML = output;
+}
+
+========================FOR EACH METHOD=========================
+
+let students = ["spongebob","patrick","squidward"];
+students.forEach(capitalize)
+students.forEach(print)
+
+function capitalize(element, index, array){
+    array[index] = element[0].toUpperCase() + element.substring(1);
+}
+
+function print(element){
+    console.log(element)
+}
+
+console.log(students[0]);
+
+=============================MAP METHOD IN ARRAYS=====================
+
+let numbers = [1,2,3,4,5];
+let squares = numbers.map(square);
+let cubes = numbers.map(cube);
+
+squares.forEach(print)
+cubes.forEach(print)
+
+function square(element){
+    return Math.pow(element,2);
+}
+
+function cube(element){
+    return Math.pow(element,3);
+}
+
+function print(element){
+    console.log(element);
+}
+
+=========================FILTER METHOD IN ARRAYS======================
+
+let ages = [18,16,21,19,90,25];
+let adults = ages.filter(checkAge);
+
+adults.forEach(print);
+
+function checkAge(element){
+    return element >= 18;
+}
+
+function print(element){
+    console.log(element);
+}
+
+=======================REDUCE METHOD IN ARRAYS========================
+
+let prices = [15,20,25,5,10,30];
+let total = prices.reduce(checkOut);
+
+console.log(`Your total is ${total}`)
+
+function checkOut(total,element){
+    return total + element;
+}
+
+==================SORT IN AN ARRAY=================================
+
+let grades = [100,50,60,90,80,70,32];
+
+grades = grades.sort(ascendingSort);
+
+grades.forEach(print);
+
+function descendingSort(x,y){
+    return y - x;
+}
+
+function ascendingSort(x,y){
+    return x - y;
+}
+
+function print(element){
+    console.log(element)
+}
+
+===========================FUNCTION EXPRESSIONS=======================
+
+const greeting = function(){
+    console.log("Hello !");
+}
+
+greeting();
+
+let count = 0;
+
+ function increaseCount(){
+    count++ ;
+    document.getElementById("mylabel").innerHTML = count;
+}
+
+function decreaseCount(){
+    count-- ;
+    document.getElementById("mylabel").innerHTML = count;
+} 
+
+document.getElementById("increasebtn").onclick = function(){
+    count++ ;
+    document.getElementById("mylabel").innerHTML = count;
+}
+
+document.getElementById("decreasebtn").onclick = function(){
+    count-- ;
+    document.getElementById("mylabel").innerHTML = count;
+}
+
+=====================ARROW FUNCTION EXPRESSIONS======================
+
+const greeting = (username) => {
+    console.log(`hello ${username}`);
+}
+
+greeting("hovno");
+
+const percent = (x,y) => {
+    return x / y * 100;
+}
+
+console.log(`${percent(60,100)}%`);
+
+let grades = [100,50,90,60,80,70];
+
+grades.sort((x,y) => {
+    return y - x;
+})
+
+grades.forEach((element) => {
+    console.log(element)
+})
+
+=================SHUFFLE ELEMENTS IN AN ARRAY===========================
+
+let cards = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+
+shuffle(cards);
+
+//console.log(cards[0]);
+cards.forEach((card) => {
+    console.log(card)})
+
+function shuffle(array){
+    let currentIndex = array.length;
+
+    while(currentIndex != 0){
+        let randomIndex = Math.floor(Math.random() * array.length);
+        currentIndex-- ;
+
+        let temp = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temp;
+    }
+
+    return array;
+}
+
 */

@@ -578,4 +578,460 @@ function shuffle(array){
     return array;
 }
 
+====================NESTED FUNCTIONS=============================
+
+let username = "rondon";
+let userInbox = 0;
+
+login();
+
+function login(){
+    displayUsername();
+    displayUserInbox();
+    
+    function displayUsername(){
+        console.log(`Welcome ${username}`);
+    }
+
+    function displayUserInbox(){
+    console.log(`You have ${userInbox} new messages`);
+    }
+}
+
+=========================== M A P S ============================
+
+const store = new Map([
+["t-shirt",20],
+["jeans",30],
+["socks",10],
+["underwear",50]
+]);
+
+let shoppingCart = 0;
+
+shoppingCart += store.get("t-shirt");
+shoppingCart += store.get("socks");
+console.log(shoppingCart);
+
+store.set("hat",40);
+
+store.delete("hat");
+
+console.log(store.has("t-shirt"));
+
+console.log(store.size);
+
+store.forEach((value,key) => {  
+    console.log(`${key} $${value}`);
+})
+
+=============================OBJECTS=====================================
+
+const car1 = {
+    model:"Mustang",
+    color:"red",
+    year:2023,
+
+    drive:function(){
+        console.log("You drive the car");
+    },
+    brake:function(){
+        console.log("You stepp on the brakes")
+    }
+}
+
+const car2 = {
+    model:"Rolls Royce",
+    color:"black",
+    year:2022,
+
+    drive:function(){
+        console.log("You drive the car");
+    },
+    brake:function(){
+        console.log("You step on the brakes")
+    }
+}
+
+console.log(car1.model);
+console.log(car1.color);
+
+car1.drive();
+car1.brake();
+
+console.log(car2.model);
+console.log(car2.color);
+
+car2.drive();
+car2.brake();
+
+=============================THIS IN OBJECTS=========================
+
+const car1 = {
+    model:"Mustang",
+    color:"red",
+    year:2023,
+
+    drive:function(){
+        console.log(`You drive a ${this.color} ${this.model}`);
+    }
+}
+
+const car2 = {
+    model:"Rolls Royce",
+    color:"black",
+    year:2022,
+
+    drive:function(){
+        console.log(`You drive a ${this.color} ${this.model}`);
+    }
+}
+
+car1.drive();
+car2.drive();
+
+this.name = "myCoolWindow";
+
+console.log(this);
+console.log(this.name);
+
+=======================CLASSES==================================
+
+class Player{
+    score = 0;
+
+    pause(){
+        console.log("You pause the game");
+    }
+
+    exit(){
+        console.log("You exited the game");
+    }
+}
+
+const player1 = new Player();
+const player2 = new Player();
+const player3 = new Player();
+const player4 = new Player();
+
+player1.score += 2;
+player3.score += 4;
+player4.score += 5;
+
+console.log(player1.score);
+console.log(player2.score);
+console.log(player3.score);
+console.log(player4.score);
+
+player1.pause();
+player1.exit();
+player2.exit();
+
+==================CONSTRUCTORS IN CLASSES=============================
+
+class Student{
+    constructor(name,age,gpa){
+        this.name = name;
+        this.age = age;
+        this.gpa = gpa;
+    }
+    study(){
+        console.log(`${this.name} is studying`)
+    }
+}
+
+const Student1 = new Student("Rondon",16,5);
+const Student2 = new Student("Hovniak",69,3.5);
+const Student3 = new Student("Makak",12,1);
+
+console.log(Student1.name);
+console.log(Student1.age);
+console.log(Student1.gpa);
+
+Student1.study();
+
+console.log(Student2.name);
+console.log(Student2.age);
+console.log(Student2.gpa);
+
+Student2.study();
+
+console.log(Student3.name);
+console.log(Student3.age);
+console.log(Student3.gpa);
+
+Student3.study();
+
+==================STATIC KEYWORD IN CLASSES=====================
+
+Math.round();
+
+class Car{
+
+    static numberOfCars = 0;
+
+    constructor(model){
+        this.model = model;
+        Car.numberOfCars += 1;
+    }
+
+    static startRace(){
+        console.log("3...2...1...GO!")
+    }
+}
+
+const car1 = new Car("Mustang");
+const car2 = new Car("BMW");
+const car3 = new Car("Rolls Royce");
+const car4 = new Car("Skoda");
+const car5 = new Car("KIA");
+
+console.log(Car.numberOfCars);
+
+Car.startRace();
+
+=====================INHERITANCE IN CLASSES===========================
+
+class Animal{
+    alive = true;
+    eat(){
+        console.log(`This ${this.name} is eating`);
+    }
+    sleep(){
+        console.log(`This ${this.name} is sleeping`);
+    }
+}
+
+class Rabbit extends Animal{ 
+    name = "rabbit";
+
+    run(){
+        console.log(`This ${this.name} is running`);
+    }
+}
+
+class Fish extends Animal{
+    name = "rabbit";
+
+    swim(){
+        console.log(`This ${this.name} is swimming`);
+    }
+}
+
+class Hawk extends Animal{
+    name = "hawk";
+
+    fly(){
+        console.log(`This ${this.name} is flying`);
+    }
+}
+
+const rabbit = new Rabbit();
+const fish = new Fish();
+const hawk = new Hawk();
+
+console.log(rabbit.alive);
+rabbit.eat();
+rabbit.sleep();
+rabbit.run();
+
+console.log(fish.alive);
+fish.eat();
+fish.sleep();
+fish.swim();
+
+console.log(hawk.alive);
+hawk.eat();
+hawk.sleep();
+hawk.fly();
+
+================SUPER CONSTRUCTOR IN PARENT CLASS======================
+
+class Animal{
+
+    constructor(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Rabbit extends Animal{ 
+    constructor(name,age,runSpeed){
+        super(name,age);
+        this.runSpeed = runSpeed;
+    }
+}
+
+class Fish extends Animal{
+    constructor(name,age,swimSpeed){
+        super(name,age);
+        this.swimSpeed = swimSpeed;
+    }
+}
+
+class Hawk extends Animal{
+    constructor(name,age,flySpeed){
+        super(name,age);
+        this.flySpeed = flySpeed;
+    }
+}
+
+const rabbit = new Rabbit("hovniak",1,40);
+const fish = new Fish("tart",6,20);
+const hawk = new Hawk("Wahk",2,150);
+
+console.log(rabbit.name);
+console.log(rabbit.age);
+console.log(rabbit.runSpeed);
+
+console.log(fish.name);
+console.log(fish.age);
+console.log(fish.swimSpeed);
+
+console.log(hawk.name);
+console.log(hawk.age);
+console.log(hawk.flySpeed);
+
+===================GET AND SET PROPERTY IN CLASSES===================
+
+class Car{
+    constructor(power,gas){
+        this._gas = gas;
+        this._power = power;
+    }
+    
+    get power(){
+        return `${this._power} HP`;
+    }
+    get gas(){
+        return `${this._gas} L (${this._gas / 50 * 100}%)`
+    }
+    set gas(value){
+        if(value > 50){
+            value = 50;
+        }
+        else if(value < 0){
+            value = 0;
+        }
+        this._gas = value;
+    }
+}
+
+let car = new Car(400,25);
+
+car.gas = 15;
+
+console.log(car.power);
+console.log(car.gas);
+
+==================OBJECTS AS ARGUMENTS==============================    
+
+class Car{
+
+    constructor(model,year,color){
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+}
+
+const car1 = new Car("Mustang",2023,"red");
+const car2 = new Car("Rolls Royce",2026,"black");
+const car3 = new Car("Skoda",1997,"blue");
+
+changeColor(car1,"gold")
+displayInfo(car1);
+
+function displayInfo(car){
+    console.log(car.model);
+    console.log(car.year);
+    console.log(car.color);
+}
+
+function changeColor(car,color){
+    car.color = color;
+}
+
+=======================ARRAY OF OBJECTS===========================
+
+class Car{
+
+    constructor(model,year,color){
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+
+    drive(){
+        console.log(`You drive the ${this.model}`)
+    }
+}
+
+const car1 = new Car("Mustang",2023,"red");
+const car2 = new Car("Rolls Royce",2026,"black");
+const car3 = new Car("Skoda",1997,"blue");
+const car4 = new Car("Rari",2006,"white");
+
+const cars = [car1,car2,car3];
+
+console.log(cars[0].model);
+console.log(cars[1].model);
+console.log(cars[2].model);
+
+//cars[0].drive();
+//cars[1].drive();
+//cars[2].drive();
+
+startRace(cars);
+
+function startRace(cars){
+    for(const car of cars){
+        car.drive();
+    }
+}
+
+=====================ANONYMOUS OBJECTS===========================
+
+class Card{
+    constructor(value,suit) {
+        this.value = value;
+        this.suit = suit;
+    }
+}
+
+new Card("A","Hearts");
+new Card("A","Spades");
+new Card("A","Diamonds");
+new Card("A","Clubs");
+new Card("2","Hearts");
+new Card("2","Spades");
+new Card("2","Diamonds");
+new Card("2","Clubs");
+
+let cards = [new Card("A","Hearts"),new Card("A","Spades"),new Card("A","Diamonds"),new Card("A","Clubs"),new Card("2","Hearts"),new Card("2","Spades"),new Card("2","Diamonds"),new Card("2","Clubs")];
+
+console.log(cards[0].value + cards[0].suit);
+console.log(cards[1].value + cards[1].suit);
+console.log(cards[7].value + cards[7].suit);
+
+cards.forEach(card => {console.log(`${card.value} + ${card.suit}`)});
+
+==================BASIC ERROR HANDLING==============================
+
+try {
+    let x = window.prompt(`Enter a #`);
+    x = Number(x);
+
+    if(isNaN(x)) throw "That wasnt a number";
+    if(x == "") throw "That was empty";
+
+    console.log(`${x} is a number`)
+}
+catch(error){
+    console.log(error);
+}
+finally{
+    console.log("This always executes");
+}
+
 */

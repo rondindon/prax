@@ -1034,4 +1034,195 @@ finally{
     console.log("This always executes");
 }
 
+========================SET TIMEOUT METHOD===========================
+
+let item = "cryptocurrency";
+let price = 420;
+
+let timer1 = setTimeout(frist,3000);
+let timer2 = setTimeout(second,6000);
+let timer3 = setTimeout(third,9000);
+
+function frist(){
+    alert(`Buy this ${item} for ${price}`);
+}
+
+function second(){
+    alert(`This is not a scam`);
+}
+
+function third(){
+    alert(`DO IT`);
+}
+
+document.getElementById("myButton").onclick = function(){
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(timer3);
+    alert(`Thanks for buying`)
+}
+
+=====================SET INTERVAL METHOD===============================
+
+let count = 0;
+let max = window.prompt("Count up to what number # ?");
+max = Number(max);
+
+const myTimer = setInterval(countUp,1000);
+
+function countUp(){
+    count ++;
+    console.log(count);
+    if(count >= max){
+        clearInterval(myTimer);
+        console.log("the end");
+    }
+}
+
+======================DATE OBJECTS=============================
+
+let date = new Date();
+//let date = new Date(0);
+//let date = new Date(2022, 9 , 28, 14 , 17 , 49 );
+
+let year = date.getFullYear();
+let month = date.getMonth();
+let dayOfMonth = date.getDate();
+let hour = date.getHours();
+let minute = date.getMinutes();
+
+//date.setFullYear(2024);
+//date.setMonth(11);
+
+date = date.toLocaleString();
+
+console.log(date);
+console.log(year);
+console.log(month);
+console.log(dayOfMonth);
+console.log(hour);
+console.log(minute);
+
+document.getElementById("myLabel").innerHTML = date;
+
+===================UPDATING CLOCK============================
+
+const mylabel = document.getElementById("myLabel");
+
+update();
+setInterval(update,1000)
+
+function update(){
+
+    let date = new Date();
+    mylabel.innerHTML = formatTime(date);
+
+    function formatTime(date){
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+
+        hours = formatZero(hours);
+        minutes = formatZero(minutes);
+        seconds = formatZero(seconds);
+
+        return `${hours}:${minutes}:${seconds}`
+    }
+    function formatZero(time){
+        time = time.toString();
+        return time.length < 2 ? "0" + time : time;
+    }
+}
+
+========================CONSOLE.TIME METHOD===========================
+
+console.time("ResponseTime");
+
+//alert("Click the OK button!!")
+
+setTimeout(() => console.log("Hello!"),3000) ONLY WORKS FOR SYCHRONOUS CODE
+
+console.timeEnd("ResponseTime");
+
+================PROMISES (ASYNCHRONOUS OPERATIONS)================
+
+const promise = new Promise((resolve,reject) => {
+
+    let FileLoaded = false;
+
+    if(FileLoaded){
+        resolve("File loaded");
+    }else{
+        reject("File not loaded")
+    }
+
+});
+
+promise.then(value => console.log(value)).catch(error => console.log(error));
+
+
+
+const wait = time => new Promise(resolve => {
+    setTimeout(resolve,time);
+})
+
+wait(2000).then( () => console.log("Thanks for waiting"));
+
+==========================ASYNC FUNCTION========================
+
+async function loadFile(){
+
+    let FileLoaded = false;
+
+    if(FileLoaded){
+        return ("File loaded");
+    }else{
+        throw("File not loaded")
+    }
+}
+
+loadFile().then(value => console.log(value)).catch(error => console.log(error));
+
+=========================AWAIT KEYWORD============================
+
+async function loadFile(){
+
+    let FileLoaded = false;
+
+    if(FileLoaded){
+        return "File loaded";
+    }
+    else{
+        throw "File not loaded";
+    }
+}
+
+async function startProcess(){
+    try{
+        let message = await loadFile();
+        console.log(message);
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+startProcess();
+
+==================MODULES , IMPORT , EXPORT=======================
+
+//import { PI, getArea , getCircumference } from "./math_util.js";
+import * as MathUtil from "./math_util.js";
+
+console.log(MathUtil.PI);
+
+let circumference = MathUtil.getCircumference(10);
+let area = MathUtil.getArea(10);
+
+console.log(circumference,area);
+
+================== D O M ==========================
+
+console.log(document);
+
 */

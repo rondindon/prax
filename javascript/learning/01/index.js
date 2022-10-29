@@ -1225,4 +1225,133 @@ console.log(circumference,area);
 
 console.log(document);
 
+=========================SELECTING ELEMENTS======================
+
+let element = document.getElementById("myTitle");
+element.style.backgroundColor = "lightblue";
+
+let fruits = document.getElementsByName("fruits");
+
+fruits.forEach(fruit => {
+    if(fruit.checked){
+        console.log(fruit.value);
+    }
+})
+
+let vegetables = document.getElementsByTagName("li");
+vegetables[0].style.backgroundColor = "khaki";
+
+let desserts = document.getElementsByClassName("desserts");
+desserts[1].style.backgroundColor = "plum";
+
+let element1 = document.querySelector("#myTitle");
+element1.style.backgroundColor = "rebeccapurple";
+
+let elements = document.querySelectorAll(".desserts");
+elements.forEach(element => {
+    element.style.backgroundColor = "#232323"
+})
+
+==========ADD AND CHANGE HTML ELEMENTS + CSS STYLE=====================
+
+//const nameTag = document.createElement("header");
+//nameTag.textContent = window.prompt("enter your name");
+//document.body.append(nameTag);
+
+const myList = document.querySelector("#fruit");
+const listItem = document.createElement("li");
+listItem.textContent = "mango";
+//myList.prepend(listItem);
+myList.insertBefore(listItem,myList.getElementsByTagName("li")[1]);
+
+listItem.style.fontSize = "50px";
+listItem.style.listStyle = "none";
+listItem.style.fontFamily = "monospace";
+listItem.style.textAlign = "center";
+listItem.style.color = "whitesmoke";
+listItem.style.backgroundColor = "#232323";
+listItem.style.border = "2px solid rebeccapurple";
+
+=========================== E V E N T S =============================
+
+//const element = document.getElementById("myButton");
+//element.onclick = doSomething;
+
+//const element = document.body;
+//element.onload = doSomething;
+
+//const element = document.getElementById("myText");
+//element.onchange = doSomething;
+
+const element = document.getElementById("myDiv");
+element.style.backgroundColor = "plum";
+element.style.height = "100px";
+element.onmouseover = doSomething;
+element.onmouseout = doSomethingElse;
+element.onmousedown = doSomethingElse;
+element.onmouseup = doSomething;
+
+function doSomething(){
+    //alert (`You did something`);
+    element.style.backgroundColor = "rebeccapurple";
+}
+
+function doSomethingElse(){
+    //alert (`You did something`);
+    element.style.backgroundColor = "plum";
+}
+
+====================ADD EVENT LISTENER METHOD========================
+
+const innerDiv = document.getElementById("innerDiv");
+const outerDiv = document.getElementById("outerDiv");
+
+function changeRed(){
+    innerDiv.style.backgroundColor = "red";
+}
+
+function changePurple(){
+    innerDiv.style.backgroundColor = "rebeccapurple";
+}
+
+function changeBlue(){
+    alert (`You selected ${this.id}`)
+    this.style.backgroundColor = "midnightblue"
+}
+
+//innerDiv.addEventListener("mouseover",changeRed);
+//innerDiv.addEventListener("mouseout",changePurple);
+
+innerDiv.addEventListener("click",changeBlue);
+outerDiv.addEventListener("click",changeBlue);
+
+=================DETECTING KEY PRESSES====================
+
+const myDiv = document.getElementById("myDiv");
+let x = 0;
+let y = 0;
+
+function move(event){
+    switch(event.key){
+        case "ArrowDown":
+            y += 5;
+            myDiv.style.top = y + "vh";
+            break;
+        case "ArrowUp":
+            y -= 5;
+            myDiv.style.top = y + "vh";
+            break;
+        case "ArrowRight":
+            x += 5;
+            myDiv.style.left = x + "vw";
+            break;
+        case "ArrowLeft":
+            x -= 5;
+            myDiv.style.left = x + "vw";
+            break;
+        }
+}
+
+window.addEventListener("keydown", move);
+
 */

@@ -16,9 +16,28 @@ button {
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
+    font-family: monospace;
 }
 
 button:hover,
 button:focus {
     background-color: rebeccapurple;
+}
+
+#innerDiv{
+    background-color: rebeccapurple;
+    height: 100px;
+    border: 1px solid #232323;
+}
+
+#outerDiv{
+    background-color: plum;
+    height: 200px;
+}
+
+#myDiv {
+    background-color: #232323;
+    width: 20vw;
+    height: 20vh;
+    position: absolute;
 }

@@ -1354,4 +1354,313 @@ function move(event){
 
 window.addEventListener("keydown", move);
 
+======================ANIMATIONS========================
+
+const myButton = document.getElementById("myButton");
+const myAnimation = document.getElementById("myDiv");
+
+function begin(){
+    let timerId = null;
+    let x = 0;
+    let y = 0;
+
+    timerId = setInterval(frame,5);
+
+    function frame(){
+        if(x >= 260 || y >= 260){
+            clearInterval(timerId);
+        }else{
+            x += 1;
+            y += 1;
+            myAnimation.style.left = x + "px";
+            myAnimation.style.top = y + "px";
+        }
+    }
+}
+
+function beginRotate(){
+    let timerId = null;
+    let degrees = 0;
+
+    timerId = setInterval(frame,5);
+
+    function frame(){
+        if(degrees >= 360){
+            clearInterval(timerId);
+        }else{
+            degrees += 1;
+            //myAnimation.style.transform = "rotateX("+degrees+"deg)";
+            //myAnimation.style.transform = "rotatey("+degrees+"deg)";
+            myAnimation.style.transform = "rotateZ("+degrees+"deg)";
+        }
+    }
+}
+
+function beginRotateMove(){
+    let timerId = null;
+    let degrees = 0;
+    let x = 0;
+    let y = 0;
+
+    timerId = setInterval(frame,5);
+
+    function frame(){
+        if(x >= 250 || y >= 250){
+            clearInterval(timerId);
+        }else{
+            x += 1;
+            y += 1;
+            degrees += 3;
+            myAnimation.style.left = x + "px";
+            myAnimation.style.top = y + "px";
+            //myAnimation.style.transform = "rotateX("+degrees+"deg)";
+            //myAnimation.style.transform = "rotatey("+degrees+"deg)";
+            myAnimation.style.transform = "rotateZ("+degrees+"deg)";
+        }
+    }
+}
+
+function beginScale(){
+    let timerId = null;
+    let scaleX = 1;
+    let scaleY = 1;
+
+    timerId = setInterval(frame,5);
+
+    function frame(){
+        if(scaleX <= 0.1 || scaleY <= 0.1){
+            clearInterval(timerId);
+        }else{
+            scaleY -= 0.01;
+            scaleX -= 0.01;
+            myAnimation.style.transform = "scale("+scaleX+","+scaleY+")"
+        }
+    }
+
+}
+
+myButton.addEventListener("click",beginScale);
+
+===========================CANVAS API==============================
+
+let canvas = document.getElementById("myCanvas");
+let context = canvas.getContext("2d");
+
+context.beginPath();
+context.moveTo(0,0);
+context.lineTo(250,250);
+context.lineTo(250,500);
+context.moveTo(500,0);
+context.lineTo(250,250);
+context.stroke();
+
+=======================WINDOW PROPERTY==========================
+
+//console.dir(window);
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
+console.log(window.outerWidth);
+console.log(window.outerHeight);
+
+console.log(window.scrollX);
+console.log(window.scrollY);
+
+console.log(window.location.href);
+console.log(window.location.hostname);
+console.log(window.location.pathname);
+
+const myButton = document.querySelector("#myButton");
+
+//myButton.addEventListener("click", () => window.open("https://google.com"));
+//myButton.addEventListener("click", () => window.close())l;
+
+myButton.addEventListener("click", () => window.print());
+
+//window.alert("hello");
+//window.confirm("press ok to continue");
+let age = window.prompt("enter your age");
+if(age < 18 && age > 0){
+    window.alert("You must be 18+ to enter this site");
+    window.close();
+}
+
+========================== C O O K I E S =======================
+
+//document.cookie ="firstName=Patrick; expires=Sun , 1 January 2030 12:00:00 UTC; path=/";
+//document.cookie ="lastName=Star; expires=Sun , 1 January 2030 12:00:00 UTC; path=/";
+
+//console.log(document.cookie);
+
+setCookie("email","hovnozmakom@gaymail.com",5);
+
+deleteCookie("firstName");
+deleteCookie("lastName");
+deleteCookie("email");
+
+
+function setCookie(name,value,daysToLive){
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToLive * 24 * 60 * 60 *1000));
+    let expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`
+}
+
+function deleteCookie(name){
+    setCookie(name,null,null);
+}
+
+setCookie("lastname","Squarepants",365);
+setCookie("email","hovnozmakom@geymail.com");
+
+//console.log(document.cookie);
+
+//console.log(getCookie("firstName"));
+//console.log(getCookie("lastName"));
+//console.log(getCookie("email"));
+
+deleteCookie("firstName");
+deleteCookie("lastname");
+deleteCookie("email");
+
+
+function getCookie(name){
+    const cDecoded = decodeURIComponent(document.cookie);
+    const cArray = cDecoded.split("; ");
+    let result = null;
+
+    cArray.forEach( element => {
+        if(element.indexOf(name) == 0){
+            result = element.substring(name.length + 1)
+        }
+    })
+    return result
+}
+
+const firstText = document.querySelector("#firstText");
+const lastText = document.querySelector("#lastText");
+const submitBtn = document.querySelector("#submitBtn");
+const cookiesBtn = document.querySelector("#cookiesBtn");
+
+submitBtn.addEventListener("click", () => {
+setCookie("FIRSTNAME",firstText.value,365);
+setCookie("LASTNAME",lastText.value,365);
+});
+
+cookiesBtn.addEventListener("click", () => {
+    firstText.value = getCookie("FIRSTNAME");
+    lastText.value = getCookie("LASTNAME");
+});
+
+console.log(document.cookie);
+
+=========================STOPWATCH=========================
+
+const timeDisplay = document.querySelector("#timeDisplay");
+const startBtn = document.querySelector("#startBtn");
+const pauseBtn = document.querySelector("#pauseBtn");
+const resetBtn = document.querySelector("#resetBtn");
+
+let startTime = 0;
+let elapsedTime = 0;
+let currentTime = 0;
+let paused = true;
+let intervalId;
+let hours = 0;
+let mins = 0;
+let secs = 0;
+
+startBtn.addEventListener("click", () => {
+    if(paused){
+        paused = false;
+        startTime = Date.now() - elapsedTime;
+        intervalId = setInterval(updateTime,20);
+    }
+});
+pauseBtn.addEventListener("click",() => {
+    if(!paused){
+        paused = true;
+        elapsedTime = Date.now() - startTime;
+        clearInterval(intervalId);
+        console.log(elapsedTime);
+    }
+});
+resetBtn.addEventListener("click",() => {
+    paused = true;
+    console.log(elapsedTime);
+    clearInterval(intervalId);
+    startTime = 0;
+    elapsedTime = 0;
+    currentTime = 0;
+    hours = 0;
+    mins = 0;
+    secs = 0;
+    timeDisplay.textContent = "00:00:00"
+});
+
+function updateTime(){
+    elapsedTime = Date.now() - startTime;
+
+    secs = Math.floor((elapsedTime / 1000) % 60);
+    mins = Math.floor((elapsedTime / (1000 * 60)) % 60);
+    hours = Math.floor((elapsedTime / (1000* 60 * 60)) % 60);
+
+    secs = pad(secs);
+    mins = pad(mins);
+    hours = pad(hours);
+
+    timeDisplay.textContent = `${hours}:${mins}:${secs}`;
+    
+    function pad(unit){
+        return (("0") + unit).length > 2 ? unit : "0" + unit;
+    }
+}
+
 */
+
+const playerText = document.querySelector("#playerText");
+const computerText = document.querySelector("#computerText");
+const resultText = document.querySelector("#resultText");
+const choiceBtns = document.querySelectorAll('.choiceBtn');
+
+let player;
+let computer;
+let result;
+
+choiceBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        player = button.textContent;
+        computerTurn();
+        playerText.textContent = `Player : ${player}`;
+        computerText.textContent = `Computer : ${computer}`;
+        resultText.textContent = checkWinner();
+    })
+})
+
+function computerTurn(){
+    const randNum = Math.floor(Math.random() * 3 + 1);
+
+    switch(randNum){
+        case 1:
+            computer = "ROCK";
+            break;
+        case 2:
+            computer = "PAPER";
+            break;
+        case 3:
+            computer = "SCISSORS";
+            break;
+    }
+}
+
+function checkWinner(){
+    if(player == computer){
+        return `Draw`;
+    }else if(computer == "ROCK"){
+        return(player == "PAPER") ? `You win` : `You lose`;
+    }else if(computer == "SCISSORS"){
+        return(player == "PAPER") ? `You lose` : `You win`;
+    }else if(computer == "PAPER"){
+        return(player == "ROCK") ? `You lose` : `You win`;
+    }
+}

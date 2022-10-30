@@ -4,7 +4,7 @@
     font-size: 50vw;
 }
 
-button {
+/* button {
     display: block;
     margin-right: auto;
     text-align: center;
@@ -22,7 +22,7 @@ button {
 button:hover,
 button:focus {
     background-color: rebeccapurple;
-}
+} */
 
 #innerDiv{
     background-color: rebeccapurple;
@@ -35,9 +35,108 @@ button:focus {
     height: 200px;
 }
 
+/*
 #myDiv {
     background-color: #232323;
     width: 20vw;
     height: 20vh;
     position: absolute;
+}
+*/
+
+/* #myDiv {
+    background-color: #232323;
+    width: 200px;
+    height: 200px;
+    position: relative;
+} */
+
+#myCanvas{
+    border: 1px solid #232323;
+    /*background-color: rebeccapurple;*/
+}
+
+#myDiv {
+    width: 1000px;
+    height: 1000px;
+    background-color: #232323;
+}
+
+.timerBtn{
+    height: 50px;
+    width: 200px;
+
+    border: 2px solid rebeccapurple;
+    background-color: #232323;
+    
+    color: whitesmoke;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+.timerBtn:hover{
+    background-color: whitesmoke;
+    color: #232323;
+}
+
+#timeContainer{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    border: 3px solid rebeccapurple;
+    border-radius: 15px;
+    background-color: black;
+    padding: 10px;
+}
+
+#timeDisplay{
+    font-size: 10rem;
+    text-align: center;
+
+    color: rebeccapurple;
+}
+
+.gameDiv{
+    width: 75%;
+    text-align: center;
+
+    background-color: #232323;
+    color: whitesmoke;
+    padding: 2rem;
+}
+
+.gameText{
+    font-size: 50px;
+    font-family: monospace;
+    text-shadow: 1px 4px 7px rgba(142, 13, 189,0.51);
+}
+
+.choiceBtn{
+    cursor: pointer;
+    width: 25%;
+    background-color: whitesmoke;
+    color: #232323;
+
+    font-family: monospace;
+    font-size: 20px;
+
+    padding: 10px;
+    margin: 10px;
+
+    border-radius: 12px;
+    border: 2px solid rebeccapurple;
+
+    box-shadow:  1px 4px 7px rgba(142, 13, 189,0.51);
+}
+
+.choiceBtn:hover,
+.choiceBtn:focus{
+    background-color: #232323;
+    color: whitesmoke;
+
+    border: 2px solid whitesmoke;
+
+    box-shadow:  1px 4px 7px rgba(245,245, 245,0.51);
 }

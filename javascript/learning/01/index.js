@@ -1616,7 +1616,7 @@ function updateTime(){
     }
 }
 
-*/
+===================ROCK PAPER SCISSORS GAME==========================
 
 const playerText = document.querySelector("#playerText");
 const computerText = document.querySelector("#computerText");
@@ -1664,3 +1664,481 @@ function checkWinner(){
         return(player == "ROCK") ? `You lose` : `You win`;
     }
 }
+
+======================= TIC TAC TOE =====================
+
+const cells = document.querySelectorAll(".cell");
+const statusText = document.querySelector("#statusText");
+const restartBtn = document.querySelector("#restartBtn");
+const winCondintions = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+let options = ["", "", "", "", "", "", "", "", ""];
+let currentPlayer = "X";
+let running = false;
+
+initializeGame();
+
+function initializeGame(){
+    cells.forEach(cell => cell.addEventListener("click",cellClicked))
+    restartBtn.addEventListener("click",restartGame);
+    statusText.textContent = `${currentPlayer}s turn`;
+    running = true;
+}
+
+function cellClicked(){
+    const cellIndex = this.getAttribute("cellIndex");
+
+    if(options[cellIndex] != "" || !running){
+        return;
+    }
+
+    updateCell(this,cellIndex);
+    checkWinner();
+}
+
+function updateCell(cell,index){
+    options[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+}
+
+function changePlayer(){
+    currentPlayer = (currentPlayer == "X") ? currentPlayer = "O" : currentPlayer = "X";
+    statusText.textContent = `${currentPlayer}s turn`
+}
+
+function checkWinner(){
+    let roundWon = false;
+
+    for(let i = 0; i < winCondintions.length; i++){
+        const condition =winCondintions[i];
+        const cellA = options[condition[0]];
+        const cellB = options[condition[1]];
+        const cellC = options[condition[2]];
+
+        if(cellA == "" || cellB == "" || cellC ==""){
+            continue;
+        }
+        if(cellA == cellB && cellB == cellC){
+            roundWon = true;
+            break;
+        }
+    }
+
+    if(roundWon){
+        statusText.textContent = `${currentPlayer} WINS!`;
+        running = false;
+    }else if(!options.includes("")){
+        statusText.textContent = `DRAW`;
+        running = false;
+    }else{
+        changePlayer();
+    }
+}
+
+function restartGame(){
+    currentPlayer = "X";
+    options = ["", "", "", "", "", "", "", "", ""];
+    statusText.textContent = `${currentPlayer}s turn`;
+    cells.forEach(cell => cell.textContent = "");
+    running = true;
+}
+
+=====================SNAKE GAME=============================
+
+const gameBoard = document.querySelector("#gameBoard");
+const ctx = gameBoard.getContext("2d");
+const scoreText = document.querySelector("#score");
+const resetBtn = document.querySelector("#resetBtn");
+const gameWidth = gameBoard.width;
+const gameHeight = gameBoard.height;
+const boardBackground = "#232323";
+const snakeColor = "antiquewhite";
+const snakeBorder = "black";
+const foodColor = "rebeccapurple";
+const unitSize = 25;
+
+let running = false;
+let xVelocity = unitSize;
+let yVelocity = 0;
+let foodX;
+let foodY;
+let score = 0;
+let snake = [
+    {x:unitSize * 4 ,y:0},
+    {x:unitSize * 3 ,y:0},
+    {x:unitSize * 2 ,y:0},
+    {x:unitSize ,y:0},
+    {x:0 ,y:0}
+];
+
+window.addEventListener("keydown",changeDirection);
+resetBtn.addEventListener("click",resetGame);
+
+gameStart();
+
+function gameStart(){
+    running = true;
+    scoreText.textContent = score;
+    createFood();
+    drawFood();
+    nextTick();
+};
+
+function nextTick(){
+    if(running){
+        setTimeout(() => {
+            clearBoard();
+            drawFood();
+            moveSnake();
+            drawSnake();
+            checkGameOver();
+            nextTick();
+        } , 70)
+    }else{
+        displayGameOver();
+    }
+};
+
+function clearBoard(){
+    ctx.fillStyle = boardBackground;
+    ctx.fillRect(0,0,500,500);
+};
+
+function createFood(){
+    function randomFood(min,max){
+        const randNum = Math.round((Math.random() * (max - min) + min) / unitSize) * unitSize;
+        return randNum;
+    }
+    foodX = randomFood(0 , gameWidth - unitSize);
+    foodY = randomFood(0 , gameWidth - unitSize);
+};
+
+function drawFood(){
+    ctx.fillStyle = foodColor;
+    ctx.fillRect(foodX,foodY,unitSize,unitSize);
+};
+
+function moveSnake(){
+    const head = {x: snake[0].x  + xVelocity, y: snake[0].y + yVelocity};
+
+    snake.unshift(head);
+    if(snake[0].x == foodX && snake[0].y == foodY){
+        score ++;
+        scoreText.textContent = score; 
+        createFood();
+    }else{
+        snake.pop()
+    }
+};
+
+function drawSnake(){
+    ctx.fillStyle = snakeColor;
+    ctx.strokeStyle = snakeBorder;
+    snake.forEach(snakepart => {
+        ctx.fillRect(snakepart.x , snakepart.y,unitSize,unitSize);
+        ctx.strokeRect(snakepart.x , snakepart.y,unitSize,unitSize);
+    })
+};
+
+function changeDirection(event){
+    const keypressed = event.keyCode;
+    const LEFT = 37;
+    const RIGHT = 39;
+    const UP = 38;
+    const DOWN = 40;
+
+    const goingUP = (yVelocity == -unitSize);
+    const goingDOWN = (yVelocity == unitSize);
+    const goingRIGHT = (xVelocity == unitSize);
+    const goingLEFT = (xVelocity == -unitSize);
+
+    switch(true){
+        case(keypressed == LEFT && !goingRIGHT):
+            xVelocity = -unitSize;
+            yVelocity = 0;
+            break;
+
+        case(keypressed == UP && !goingDOWN):
+            xVelocity = 0;
+            yVelocity = -unitSize;
+            break;
+
+        case(keypressed == RIGHT && !goingLEFT):
+            xVelocity = unitSize;
+            yVelocity = 0;
+            break;
+
+        case(keypressed == DOWN && !goingUP):
+            xVelocity = 0;
+            yVelocity = unitSize;
+            break;    
+    }   
+};
+
+function checkGameOver(){
+    switch(true){
+        case (snake[0].x < 0):
+            running=false;
+            break;
+        
+        case (snake[0].x >= gameWidth):
+            running=false;
+            break;
+
+        case (snake[0].y < 0):
+            running=false;
+            break;
+
+        case (snake[0].y >= gameHeight):
+            running=false;
+            break;
+    }
+    for(let i; i < snake.length; i++){
+        if(snake[i].x == snake[0].x && snake[i].y == snake[0].y){
+            running = false;
+        }
+    }
+};
+
+function displayGameOver(){
+    ctx.font = "4rem Monospace";
+    ctx.fillStyle = "whitesmoke";
+    ctx.textAlign = "center";
+    ctx.fillText(`Game over!` , gameWidth / 2 , gameHeight / 2);
+    ctx.font =" 2rem Monospace"
+    ctx.fillText(`Score : ${score}` , gameWidth / 2 , gameHeight / 1.5);
+    running = false;
+};
+
+function resetGame(){
+    score = 0;
+    xVelocity = unitSize;
+    yVelocity = 0;
+    snake = [
+        {x:unitSize * 4 ,y:0},
+        {x:unitSize * 3 ,y:0},
+        {x:unitSize * 2 ,y:0},
+        {x:unitSize ,y:0},
+        {x:0 ,y:0}
+    ];
+    gameStart();
+};
+
+*/
+
+const gameBoard = document.querySelector("#game-board");
+const ctx = gameBoard.getContext("2d");
+const scoreText = document.querySelector("#score-text");
+const resetBtn = document.querySelector("#reset-btn");
+const gameWidth = gameBoard.width;
+const gameHeight = gameBoard.height;
+const boardBackground = "#232323";
+const paddle1Color = "whitesmoke";
+const paddle2Color = "antiquewhite";
+const paddleBorder = "#232323";
+const ballColor = "aquamarine";
+const ballBorderColor = "whitesmoke";
+const ballRadius = 12.5;
+const paddleSpeed = 50;
+
+let intervalId;
+let ballSpeed = 1;
+let ballX = gameWidth / 2;
+let ballY = gameHeight / 2;
+let ballXdirection = 0; 
+let ballYdirection = 0;
+let player1score = 0; 
+let player2score = 0;
+let paddle1 = {
+    width: 25,
+    height: 100,
+    x:0,
+    y:0
+}
+
+let paddle2 = {
+    width: 25,
+    height: 100,
+    x:gameWidth - 25,
+    y:gameHeight - 100
+}
+
+gameStart();
+drawPaddles();
+
+function gameStart(){
+    createBall();
+    nextTick();
+};
+
+function nextTick(){
+    intervalId = setTimeout(() => {
+        clearBoard();
+        drawPaddles();
+        moveBall();
+        drawBall(ballX,ballY);
+        checkCollision();
+        nextTick();
+    }, 10);
+};
+
+function clearBoard(){
+    ctx.fillStyle = boardBackground;
+    ctx.fillRect(0,0,gameWidth,gameHeight)
+};
+
+function drawPaddles(){
+    ctx.strokeStyle = paddleBorder;
+
+    ctx.fillStyle = paddle1Color;
+    ctx.fillRect(paddle1.x,paddle1.y,paddle1.width,paddle1.height);
+    ctx.strokeRect(paddle1.x,paddle1.y,paddle1.width,paddle1.height);
+
+    ctx.fillStyle = paddle2Color;
+    ctx.fillRect(paddle2.x,paddle2.y,paddle2.width,paddle2.height);
+    ctx.strokeRect(paddle2.x,paddle2.y,paddle2.width,paddle2.height);
+};
+
+function createBall(){
+    ballSpeed = 1;
+    if(Math.round(Math.random()) == 1){
+        ballXdirection = 1;
+    }else{
+        ballXdirection = -1;
+    }
+    if(Math.round(Math.random()) == 1){
+        ballYdirection = 1;
+    }else{
+        ballYdirection = -1;
+    }
+
+    ballX = gameWidth / 2;
+    ballY = gameHeight / 2;
+    drawBall(ballX,ballY);
+};
+
+function moveBall(){
+    ballX += (ballSpeed * ballXdirection);
+    ballY += (ballSpeed * ballYdirection);
+};
+
+function drawBall(ballX,ballY){
+    ctx.fillStyle = ballColor;
+    ctx.strokeStyle = ballBorderColor;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(ballX , ballY , ballRadius , 0 , 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+};
+
+function checkCollision(){
+    if(ballY <= 0 + ballRadius){
+        ballYdirection *= -1; 
+    }
+    if(ballY >= gameHeight - ballRadius){
+        ballYdirection *= -1; 
+    }
+    if(ballX <= 0){
+        player2score += 1;
+        updateScore();
+        createBall();
+        return;
+    }
+    if(ballX >= gameWidth){
+        player1score += 1;
+        updateScore();
+        createBall();
+        return;
+    }
+    if(ballX <= (paddle1.x + paddle1.width + ballRadius)){
+        if(ballY > paddle1.y && ballY < paddle1.y + paddle1.height){
+            ballX = (paddle1.x + paddle1.width) + ballRadius; // if ball gets stuck
+            ballXdirection *= -1;
+            ballSpeed += 1;
+        }
+    }
+    if(ballX >= (paddle2.x - ballRadius)){
+        if(ballY > paddle2.y && ballY < paddle2.y + paddle2.height){
+            ballX = paddle2.x - ballRadius;
+            ballXdirection *= -1;
+            ballSpeed += 1;
+        }
+    }
+};
+
+function changeDirection(event){
+    const keypressed = event.keyCode;
+    const paddle1Up = 87;
+    const paddle1Down = 83;
+    const paddle2Up = 38;
+    const paddle2Down = 40;
+
+    switch(keypressed){
+        case(paddle1Up):
+            if(paddle1.y > 0){
+                paddle1.y -= paddleSpeed;
+            }
+            break;
+
+        case(paddle1Down):
+            if(paddle1.y < gameHeight - paddle1.height){
+                paddle1.y += paddleSpeed;
+            }
+            break;
+
+        case(paddle2Up):
+            if(paddle2.y > 0){
+                paddle2.y -= paddleSpeed;
+            }
+            break;
+
+        case(paddle2Down):
+            if(paddle2.y < gameHeight - paddle2.height){
+                paddle2.y += paddleSpeed;
+            }
+            break;
+    }   
+
+};
+
+function updateScore(){
+    scoreText.textContent = `${player1score} : ${player2score}`
+};
+
+function resetGame(){
+    player1score = 0;
+    player2score = 0;
+    paddle1 = {
+        width: 25,
+        height: 100,
+        x:0,
+        y:0
+    }
+    
+    paddle2 = {
+        width: 25,
+        height: 100,
+        x:gameWidth - 25,
+        y:gameHeight - 100
+    }
+    ballSpeed = 0;
+    ballX = 0;
+    ballY = 0;
+    ballXdirection = 0;
+    ballYdirection = 0;
+    updateScore();
+    clearInterval(intervalId);
+    gameStart();
+};
+
+window.addEventListener("keydown", changeDirection);
+resetBtn.addEventListener("click",resetGame);

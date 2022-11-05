@@ -196,13 +196,13 @@ aside{
 
 .mark-headers{
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	margin-top: 4rem;
+	gap: 4rem;
 }
 
 .mark-text{
-	max-width: 50%;
-	margin-left: -230px;
+	max-width: 36%;
 }
 
 .mark-text h3{
@@ -228,6 +228,10 @@ aside{
 	font-size: 21px;
 	line-height: 120%;
 	color:#DEA405 ;
+}
+
+.farbicky{
+	margin-left: 6rem;
 }
 
 .farbicky p {
@@ -632,8 +636,12 @@ form{
 	transition: background-color 0.5s ease-out;
 }
 
+.list-x::-webkit-scrollbar {
+	width: 1rem;
+}
+
 ::-webkit-scrollbar {
-	width: 4px;
+	width: 1rem;
 	border: 1px solid #f7f7f7;
   }
   

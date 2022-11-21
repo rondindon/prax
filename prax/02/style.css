@@ -1,0 +1,114 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: monospace;
+}
+
+*::after,
+*::before{
+	box-sizing: border-box;
+}
+
+::selection{
+	background-color: #232323;
+	color: #f7f7f7;
+}
+
+body{
+	background-color:#f7f7f7 ;
+	overflow-x: hidden;
+}
+
+h1{
+	animation-duration: 1s;
+	animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+	from {
+	  margin-left: 100%;
+	  width: 300%;
+	}
+  
+	to {
+	  margin-left: 0%;
+	  width: 100%;
+	}
+  }
+
+header{
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    background-color: #232323;
+    color: whitesmoke;
+    justify-items: flex-end;
+    font-size: 2vw;
+    align-items: center;
+    padding: 0 0.9vw;
+}
+
+ul{
+    list-style: none;
+    justify-self: center;
+}
+
+li{
+    display: inline-block;
+    padding: 0 1.250vw;
+}
+
+ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+    font-weight: 500;
+    line-height: 120%;
+    font-size: 1vw;
+}
+
+.blue{
+    color: #2203E4;
+}
+
+.logo{
+	font-weight: 600;
+	font-size: 1.406vw;
+	line-height: 120%;
+
+	cursor: pointer;
+	color: #f7f7f7;
+
+	height: inherit;
+}
+
+.buyBtn{
+	margin-left: 1.667vw;
+	padding: 1vh;
+
+	background-color: #232323;
+	font-weight: 500;
+	font-size: 0.833vw;
+	border: .1vh solid #f7f7f7;
+
+ 	color: #f7f7f7;
+
+	border-color: white;
+	cursor: pointer; 
+}
+
+.buyBtn:hover{
+	background-color: #f7f7f7;
+	border-color: #2203E4;
+	color: #2203E4;
+
+	transition: background-color 0.5s ease-out;
+}
+
+.nav_item a h4:hover,
+.nav_item a h4:focus{
+	color: #2203e4;
+
+	transition: 0.2s ease-in;
+	border-bottom: 1px solid #2203e4;
+}

@@ -527,6 +527,7 @@ aside{
 	justify-content: space-evenly;
 	text-align: center;
 	width: 100%;
+	gap: 1.5vh;
 }
 
 .demo-text h2{

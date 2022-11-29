@@ -281,3 +281,10 @@ hr{
     width: 100%;
     margin: 5vh 0 3vh 0;
 }
+
+.first:hover{
+    background-color: #fff;
+    color: #00A4B9;
+    transition: 0.5s ease-in;
+    border: .1vw solid transparent;
+}

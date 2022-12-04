@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zenit</title>
-    <link rel="stylesheet" href="kk/css/fontawesome.css">
+    <link rel="stylesheet" href="../kk/css/fontawesome.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="onas.css">
 </head>
 <body>
     
@@ -23,12 +23,12 @@
 
                     <nav>
                         <ul class="nav_list">
-                            <li class="nav_links"><a href="index.html" id="nic">Uvod</a></li>
-                            <li class="nav_links"><a href="bonus/onas.html" id="nic1">O nas</a></li>
-                            <li class="nav_links"><a href="bonus/sluzby.html" id="nic2">Sluzby</a></li>
-                            <li class="nav_links"><a href="bonus/kontakt.html" id="nic3">Kontakt</a></li>
-                            <a href="login.html"><button class="nav_button first" id="first">PRIHLASIT</button></a>
-                            <a href="register.html"> <button class="nav_button second">REGISTROVAT</button></a>
+                            <li class="nav_links"><a href="../index.html" id="nic">Uvod</a></li>
+                            <li class="nav_links"><a href="onas.html" id="nic1">O nas</a></li>
+                            <li class="nav_links"><a href="sluzby.html" id="nic2">Sluzby</a></li>
+                            <li class="nav_links"><a href="#" id="nic3">Kontakt</a></li>
+                            <a href="../login.html"><button class="nav_button first" id="first">PRIHLASIT</button></a>
+                            <a href="../register.html"> <button class="nav_button second">REGISTROVAT</button></a>
                         </ul>
                     </nav>
                 </div>
@@ -36,9 +36,9 @@
 
             <div class="header-adresy">
 
-                <h2>Prihlasenie uzivatela</h2>
+                <h2>O nas</h2>
 
-                <p class="login"><span class="bold">Uvod</span> / Prihlasenie</p>
+                <p class="login"><span class="bold">Uvod</span> / O nas</p>
 
             </div>
 
@@ -46,14 +46,31 @@
 
         <section class="section-2">
 
-            <div class="inputs">
+            <figure>
+                <img src="../kk/images/our-team.jpg" alt="">
+            </figure>
 
-                <input type="text" name="" id="" placeholder="Vase prihlasovacie meno/email">
+            <div class="onas_text">
+                <div class="prvacast">
+                    <p class="blue">O nas</p>
 
-                <input type="text" name="" id="" placeholder="Vase prihlasovacie heslo">
+                    <h2>O nasej spolocnosti</h2>
 
-                <button class="prihlasit">PRIHLASIT</button>
+                    <p>Na trhu pôsobíme od roku 1985. Začali sme ako nadšenci a neskôr sme vybudovali obrovskú značku, ktorá disponuje spoľahlivou infraštruktúrou zahŕňajúcou tri veľké dátové centrá rozdelené na viaceré lokácie a tímom administrátorv, ktorí na všetko dohliadajú.</p>
+                </div>
 
+
+                <hr class="nic">
+
+                <div class="druhacast">
+                    <h3 class="blue">Nasa historia v skratke <span class="dalej-text"> Co bude dalej?</span></h3>
+
+                    <p>1985: Nas prvy server v Piestanoch - SPSE</p>
+                    <p>1988: Druhy server v Niznej - SOUE</p>
+                    <p>1992: Tretí server v Prešove - SPŠE</p>
+                    <p>od 1996: poriadne sme sa do toho opreli a každý rok pribúda nový server (Stará Turá, Košice, Liptovský Hrádok, Banská Bystrica, Bratislava, Martin, Komárno, ...)</p>
+                    <p>2022: Vo februári 2023 plánujeme spustiť najnovší server v Bratislave - SOŠT</p>
+                </div>
             </div>
 
         </section>
@@ -66,7 +83,7 @@
 
                 <h2>Napisali o nas</h2>
 
-                <hr>
+                <hr class="hidden">
 
                 <h1><i class="fa fa-quote-right"></i></h1>
 
@@ -116,6 +133,6 @@
     </main>
 
 
-<script src="index.js"></script>
+<script src="../index.js"></script>
 </body>
 </html>

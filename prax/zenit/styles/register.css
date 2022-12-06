@@ -11,7 +11,7 @@ a{
 }
 
 .section-header{
-    background-image:url('kk/images/banner-bg.jpg');
+    background-image:url('../kk/images/banner-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -126,7 +126,7 @@ nav{
 }
 
 .section-login{
-    background-image:url('kk/images/heading-bg.jpg');
+    background-image:url('../kk/images/heading-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -217,7 +217,7 @@ blockquote{
 }
 
 .section-5{
-    background-image: url('kk/images/footer-bg.jpg');
+    background-image: url('../kk/images/footer-bg.jpg');
     background-size: cover;
 }
 

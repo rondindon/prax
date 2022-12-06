@@ -11,7 +11,7 @@ a{
 }
 
 .section-header{
-    background-image:url('kk/images/banner-bg.jpg');
+    background-image:url('../kk/images/banner-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -261,7 +261,7 @@ label{
 .section-3{
     width: 100%;
     margin: 0 auto;
-    background-image: url('kk/images/pricing-bg.jpg');
+    background-image: url('../kk/images/pricing-bg.jpg');
     background-size: 100% 52%;
     background-repeat: no-repeat;
     
@@ -453,7 +453,7 @@ label{
 }
 
 .section-5{
-    background-image: url('kk/images/footer-bg.jpg');
+    background-image: url('../kk/images/footer-bg.jpg');
     background-size: cover;
 }
 

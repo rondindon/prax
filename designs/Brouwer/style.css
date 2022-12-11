@@ -11,7 +11,7 @@
     color: whitesmoke;
     font-family: 'Unbounded', cursive;
     font-weight: 400;
-    cursor: cell;
+    cursor: url(img/cursor-svgrepo-com.svg), auto;
 }
 
 body{

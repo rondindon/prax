@@ -25,3 +25,25 @@ function scrollFunction() {
 
   } 
 };
+
+const elements = Array.from(document.querySelectorAll('.fill'));
+
+function fill(item, index) {
+  
+  const bgColor = getComputedStyle(item).backgroundColor,
+  fillLayer = document.createElement('div');
+  fillLayer.classList.add('fill-layer');
+  item.style.backgroundColor = 'transparent';
+  item.style.position = 'relative';
+  item.style.overflow = 'hidden';
+  item.style.visibility = 'hidden';
+  setTimeout(function() {
+    item.style.visibility = 'visible'
+    fillLayer.style.backgroundColor = bgColor;  
+    item.appendChild(fillLayer);
+    item.classList.add('zvac');
+  }, index * 250);
+  
+}
+
+elements.forEach(fill);

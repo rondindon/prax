@@ -42,7 +42,7 @@ function fill(item, index) {
     fillLayer.style.backgroundColor = bgColor;  
     item.appendChild(fillLayer);
     item.classList.add('zvac');
-  }, index * 250);
+  }, index * 200);
   
 }
 

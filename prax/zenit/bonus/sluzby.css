@@ -346,8 +346,22 @@ footer p{
     flex-direction: column;
     gap: 1vw;
     background-color: #F7F7F7;
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: 0.1s ease-in;
 }
 
+.container .box:hover{
+    scale: 1.05;
+}
+
+.container .box p{
+    font-size: .8vw;
+}
+
+.container .box h3{
+    font-size: 1vw;
+}
 
 .container .box:nth-child(1){
     background-color:#adecffb2;

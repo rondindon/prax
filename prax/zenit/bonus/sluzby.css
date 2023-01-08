@@ -353,6 +353,7 @@ footer p{
 
 .container .box:hover{
     scale: 1.05;
+    box-shadow: 0px 7px 28px 0px rgba(0,0,0,0.75);
 }
 
 .container .box p{
